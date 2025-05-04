@@ -1,12 +1,13 @@
 import React from 'react'
 import { FilterType, MoneyType } from '../App'
+import { Button } from './Button'
 
 type MoneyRenderPropsType = {
     filteredMoney: MoneyType[]
-    onClickHandler: (buttonName: FilterType) => void
+    onClickFilterHandler: (buttonName: FilterType) => void
 }
 
-export const MoneyRender = ({filteredMoney, onClickHandler}: MoneyRenderPropsType) => {
+export const MoneyRender = ({filteredMoney, onClickFilterHandler}: MoneyRenderPropsType) => {
   return (
     <>
     <ul>
@@ -20,9 +21,10 @@ export const MoneyRender = ({filteredMoney, onClickHandler}: MoneyRenderPropsTyp
           )
         })}
       </ul>
-      <button onClick={() => onClickHandler("all")}>All</button>
-      <button onClick={() => onClickHandler("ruble")}>Roubles</button>
-      <button onClick={() => onClickHandler("dollar")}>Dollars</button>
+      <Button name="All" callback={() => onClickFilterHandler("all")}/>
+      <Button name="Roubles" callback={() => onClickFilterHandler("ruble")}/>
+      <Button name="Dollars" callback={() => onClickFilterHandler("dollar")}/>
+
     </>
   )
 }

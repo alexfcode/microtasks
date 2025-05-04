@@ -36,12 +36,12 @@ export const App = () => {
     filteredMoney = money.filter((mon) => mon.banknote === "dollar" )
   }
   
-  const onClickHandler = (buttonName: FilterType) => {
+  const onClickFilterHandler = (buttonName: FilterType) => {
       setFilter(buttonName)
   }
   return (
     <div className='App'>
-      <MoneyRender onClickHandler={onClickHandler} filteredMoney={filteredMoney}/>
+      <MoneyRender onClickFilterHandler={onClickFilterHandler} filteredMoney={filteredMoney}/>
     </div>
   )
 }
