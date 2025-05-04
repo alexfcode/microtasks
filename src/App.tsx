@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import './App.css';
-import { NewComponent } from './components/NewComponent';
+import { MoneyRender } from './components/MoneyRender';
 
-export type FilterType = "all" | "dollar" | "ruble"
 
 export type MoneyType = {
-  banknote: string
-  nominal: number
+  banknote: string 
+  nominal: number 
   number: string
 }
 
+export type FilterType = "all" | "ruble" | "dollar"
+
 export const App = () => {
 
-  const [money, setMoney] = useState([
+  const [money, setMoney] = useState<MoneyType[]>([
     { banknote: "dollar", nominal: 100, number: "a123456789" },
     { banknote: "dollar", nominal: 50, number: "b123456789" },
     { banknote: "ruble", nominal: 100, number: "c123456789" },
@@ -24,25 +25,23 @@ export const App = () => {
   ])
 
 
-  const [filter, seFilter] = useState("all")
+  const [filter, setFilter] = useState<FilterType>("all")
 
   let filteredMoney = money
-
+ 
   if (filter === "ruble") {
     filteredMoney = money.filter((mon) => mon.banknote === "ruble")
   }
   if (filter === "dollar") {
-    filteredMoney = money.filter((mon) => mon.banknote === "dollar")
+    filteredMoney = money.filter((mon) => mon.banknote === "dollar" )
   }
-
-  const onClickFilterHandler = (buttonName: FilterType) => {
-    seFilter(buttonName)
+  
+  const onClickHandler = (buttonName: FilterType) => {
+      setFilter(buttonName)
   }
-
-
   return (
     <div className='App'>
-      <NewComponent filteredMoney={filteredMoney} onClickFilterHandler={onClickFilterHandler}/>
+      <MoneyRender onClickHandler={onClickHandler} filteredMoney={filteredMoney}/>
     </div>
   )
 }
